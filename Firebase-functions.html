@@ -1,0 +1,154 @@
+<!DOCTYPE HTML>
+<html lang="en">
+	<head>
+		<title>Firebase cloud Function</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+	</head>
+	<body>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Header -->
+								<header id="header">
+									<a href="index.html" class="logo"><strong>Blog</strong></a>
+									<ul class="icons">
+										<li><a href="#" class="icon fa-linkedin"><span class="label">Linkedin</span></a></li>
+										<li><a href="#" class="icon fa-github"><span class="label">Github</span></a></li>
+									</ul>
+								</header>
+
+							<!-- Content -->
+								<section>
+									<header class="main">
+										<h1>Firebase cloud Function</h1>
+									</header>
+
+									<span class="image main"><img src="images/fb-c-f/firebase-cloud-func.png" alt="" /></span>
+
+									<p>This new functionality allows you to create functions written in JavaScript, in a Node.js environment, which are invoked by Firebase events (When you write in the database, when a user is created, when a file is uploaded, etc).</p>
+									
+									<p>This allows us to have a quite complete Backend as a Service solution with Firebase.</p>
+
+									<p>Cloud Functions are the next level when it comes to Cloud Computing. We would have 3 levels:</p>
+								    
+								    <hr class="major" />
+									<h2>Infrastructure as a Service (IaaS):</h2>
+									<p>Amazon EC2, Google Cloud Compute Engine, Digital Ocean.</p>
+
+									<hr class="major" />
+									<h2>Platform as a Service (PaaS)</h2>
+									<p>Google Cloud App Engine, Heroku.</p>
+
+									<hr class="major" />
+									<h2>Functions as Service (FaaS)</h2>
+									<p>Amazon Lambda, Google Cloud Functions, Cloud Functions for Firebase.</p>
+
+
+									<hr class="major" />
+    								<h2>What can I do with the Cloud Functions?</h2>
+
+									<p>We can send push notifications to our users' devices by joining Firebase Cloud Messaging and the database trigger that jumps when we write in a certain record, for example when a user has a new "follower":</p>
+									    <span class="image main"><img src="images/fb-c-f/ex-fb-conec.png" alt="" /></span>
+
+
+                                    <hr class="major" />
+                                    <h2>Message filtering:</h2>
+									<p>By joining the triggers of the database with the Cloud Functions again we can make it possible to write a message in a database registry, to "sanitize" it (remove HTML or malicious JS code, hide information such as emails or phone, etc ...) and write it "clean" in the database:</p>
+									    <span class="image main"><img src="images/fb-c-f/mess-filter.png" alt="" /></span>
+
+									<hr class="major" />
+									<h2>Image processing:</h2>
+									<p>Combining Firebase Storage triggers with the database and the Cloud Functions, we can make each time a user upload an image to the Storage, download it, reduce it in size and place it back in Storage and write a record in the database. All with a function.</p>
+									    <span class="image main"><img src="images/fb-c-f/tra-img.png" alt="" /></span>
+									    
+									<p>And many more that are triggered if you join the Machine Learning APIs that Google Cloud has (Vision, Video, Speech, Translate, etc.).</p>
+
+									<hr class="major" />
+
+									<h2>How do I create my first Cloud Function?</h2>
+									<p>In order to create functions with Firebase, you need first of all to have installed Node.js and NPM on your computer in order to install the firebase-tools library:</p>
+									    <span class="image main"><img src="images/fb-c-f/fcc-install.png" alt="" /></span>
+
+									<p>This will allow us to use the firebase command in the terminal.</p>
+
+									<p>First we place ourselves in a directory of our team where we want to have our project and execute:</p>
+									    <span class="image main"><img src="images/fb-c-f/fb-c-log.png" alt="" /></span>
+
+									<p>Finally we run the firebase init command with the functions option and we will create a firebase project ready to create functions:</p>
+									    <span class="image main"><img src="images/fb-c-f/fb-init.png" alt="" /></span> 
+
+									<p>And the generated file structure will be the following:</p> 
+									    <span class="image main"><img src="images/fb-c-f/fb-struc.png" alt="" /></span> 
+
+									<p>Once we have this, we start writing in the file myProject / functions / index.js.</p>
+
+									<p>The first thing we must add are the dependencies of firebase-functions and firebase-admin to be able to use the triggers that trigger the functions and have administrator access to the database of our project:</p>
+									    <span class="image main"><img src="images/fb-c-f/admin-fbc.png" alt="" /></span> 
+
+									<p>And an example of a function, following the official documentation of Firebase, would be to capitalize a text that is written in the database, that we could do it in the following way:</p>  
+									    <span class="image main"><img src="images/fb-c-f/adm-exp-fb.png" alt="" /></span>  
+
+									<p>When writing to the database, in the / messages / {pushId} / original register, the onWrite event triggers the makeUppercase function that we export.</p> 
+
+									<p>And then the function what it does is take the text, which comes in the object event.data.val (), pass it to uppercase and write it in the record / messages / {pushId} / uppercase since event.data.ref referenced to the record with which we define the trigger that is / messages / {pushId} / original and with .parent.child we go up and create a new child.</p> 
+
+									<p>And with this it is basically the beginning of any function that we develop. Afterwards, the degree of complexity and the integration of bookstores will be lower or higher.</p>     
+									
+								    
+								</section>
+
+						</div>
+					</div>
+
+				<!-- Sidebar -->
+					<div id="sidebar">
+						<div class="inner">
+
+							<!-- Search -->
+								<section id="search" class="alt">
+									<form method="post" action="#">
+										<input type="text" name="query" id="query" placeholder="Search" />
+									</form>
+								</section>
+
+							<!-- Menu -->
+								<nav id="menu">
+									<header class="major">
+										<h2>Menu</h2>
+									</header>
+									<ul>
+										<li><a href="index.html">Homepage</a></li>
+										<li><a href="generic.html">Yassine Hajji</a></li>
+										<li><a href="elements.html">Medlak</a></li>
+									</ul>
+								</nav>
+
+							<!-- Footer -->
+								<footer id="footer">
+									<p class="copyright" href="https://yassineh.com">&copy; Yassine Hajji</p>
+								</footer>
+
+						</div>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

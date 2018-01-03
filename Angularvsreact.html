@@ -1,0 +1,131 @@
+<!DOCTYPE HTML>
+<html lang="en">
+	<head>
+		<title>Angular or react</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+	</head>
+	<body>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Header -->
+								<header id="header">
+									<a href="index.html" class="logo"><strong>Blog</strong></a>
+									<ul class="icons">
+										<li><a href="#" class="icon fa-linkedin"><span class="label">Linkedin</span></a></li>
+										<li><a href="#" class="icon fa-github"><span class="label">Github</span></a></li>
+									</ul>
+								</header>
+
+							<!-- Content -->
+								<section>
+									<header class="main">
+										<h1>Angular or React</h1>
+									</header>
+
+								        <span class="image main"><img src="images/angvsrea/ang-rea-ban.png" alt="" /></span>
+
+									<p>In this article I want to tell my experience of working with Angular for a while and my change to React a few months ago. It is not an "Angular vs React" post, both of them seem good technologies, if I do not just want to show what things caused that I left Angular and tried different stack for the Front-End.</p>
+									<p>At that time, Node.js also began to hit hard and the so-called MEAN stack was formed (with MongoDB, ExpressJS, Angular and Node.js).</p>
+									<h2>What was there before Angular</h2>
+									    <span class="image main"><img src="images/angvsrea/jq-bc-ban.png" alt="" /></span>
+									<p>Angular is great, because at the time, the "good" alternative was Backbone and the "bad" JQuery.</p>
+									<p>A few years ago there was not as much business logic in the Front-End side of web applications as now, but if you wanted to do something, you could do it in pure JavaScript or help you from libraries like jQuery that reduced the cross-browser code and helped you manipulate the DOM.</p> 
+									<p>The bad thing about jQuery was that in the end you forgot to program in JavaScript and you ended up using jQuery for everything</p> 
+									<p>Backbone solved this by implementing an MVC architecture for the Front-End. The problem is that JavaScript a few years ago did not have the power or the tools that we have now. So if you wanted to modularize your code, you had to use Require.js, which, in my opinion, was a pain.</p>  
+
+									<h2>The arrival of Angular.js</h2>
+
+									<p>Then appeared Angular, which at the time was a way to extend the HTML through directives. It also provided a MVC pattern, called MVVM (Model View-View Model), implemented double data-binding, management of modules, promises, etc ... Many things that were not in JavaScript at that time and that we wanted to use jQuery or JavaScript Vanilla to do it, it would be a lot of code.</p>
+									<p>The problem came when JavaScript evolved and the arrival of the new standard (ES6) added natively functionalities that Angular implemented.</p>
+									    <span class="image main"><img src="images/angvsrea/es6-ban.png" alt="" /></span>
+
+									<p>We now have module management natively (it is not currently supported but it is there). We also have Promises natively, the Fetch API, etc ... A lot of new features that we do not need any library or framework to help us (Except Babel to transpile code).</p>
+									<p>If you want to use ES6 in Angular 1x, things get pretty complicated. Angular has its own system of modules and if you want to use ES6 (or use require with Browserify) you have to put almost every controller in an Angular module, and then export it with ES6.</p>
+									<p>If ES6 makes your life easier when programming in JavaScript, joining it with Angular made it more complicated</p>   
+
+
+								    
+								    <hr class="major" />
+									<h2>The birth of the WebComponents and Angular 2</h2>
+									    <span class="image main"><img src="images/angvsrea/wc-ang-ban.png" alt="" /></span>
+
+									<p>Parallel to the development of Angular, the specification of the WebComponents was proposed and it was the beginning of the programming oriented to components. Polymer and React followed that architecture and in Angular 1x it could be achieved, using directives as components. In the end, an Angular directive is a component (it has an HTML tag) and encapsulates an HTML template and a JavaScript controller.</p>
+									<p>In fact, as of version 1.5, the component () function appears, which allows us to do just that, transform a directive into a component.</p>
+									<p>Seeing how JavaScript and the Web Components standard evolve, it was proposed to rewrite Angular following the new standards, is what is known as Angular v2 or simply Angular.</p>
+									<p>The problem is that, in my opinion, the syntax was very complicated. The new version of Angular was nothing like the previous one. Attempts were made to make the transition easier (Developing versions 1.5, 1.6 and 1.7 that were incorporating the novelties of Angular 2 gradually).</p>
+									<p>During all that time, React was one of the libraries that most took off and began to mature and its ecosystem and community grew a lot. It started to become a stable project and since I gave it a look some time ago, I wanted to give it a try</p>			
+
+									<hr class="major" />					
+									
+									<p>Flux proposes that there are several Stores to store the state. However Redux simplifies this by using a single Store. The whole state is stored in a tree. In JavaScript this would be achieved with a JavaScript object like the following:</p>
+									    <span class="image main"><img src="images/angvsrea/reactjs-ban.png" alt="" /></span>
+									
+									<p>The only complaints I found at the beginning were the JSX syntax. At first you think it is HTML and of course, adding HTML to JavaScript code is not what you should do, but then you understand that it is not HTML, it is JavaScript but written in a simpler way to program and understand.</p>    
+									<p>React is not the substitute for Angular, because React is just a library that does only one thing: Render components in the DOM. But he does it very well. To implement with React and its ecosystem, a web application as we would with Angular, we need more libraries and more programming.</p> 
+									<p>This may seem like a disadvantage to some people, but to me personally it seems the opposite. With a framework, either Angular or any other. If you want to use for example a routing system, you have to use the one that is built for the framework itself.</p>
+									<p>With React, if you want to implement Routing, you can do it yourself with JavaScript Vanilla, or use a library, whichever you prefer. It can be the one that created the community with react-router, or you can use page.js or whichever you prefer. You are not tied to anything.</p>
+									<p>React allows you to be more modular and add whatever you need little by little. If you need to use promises you can use the ones that ES6 provides you in a native way, if you need to make AJAX calls, you can use fetch or a library as request or axios or even jQuery are $ .ajax ().</p>
+
+									<h2>conclusion</h2>
+
+									<p>This form is the one that seems most correct, because it allows you to be more independent and the architecture of your application no longer depends on a single library or tools. Also programming in this way has made me learn more about front-end architectures and improve as a professional. As I always say, this is my opinion, based on my experience with both technologies. Angular 2 is an excellent framework (if not, nobody would use it) and React is another technology within the great ecosystem that exists in the Frontend (Polymer, Vue, Backbone, etc ...)</p>
+
+
+								</section>
+
+						</div>
+					</div>
+
+				<!-- Sidebar -->
+					<div id="sidebar">
+						<div class="inner">
+
+							<!-- Search -->
+								<section id="search" class="alt">
+									<form method="post" action="#">
+										<input type="text" name="query" id="query" placeholder="Search" />
+									</form>
+								</section>
+
+							<!-- Menu -->
+								<nav id="menu">
+									<header class="major">
+										<h2>Menu</h2>
+									</header>
+									<ul>
+										<li><a href="index.html">Homepage</a></li>
+										<li><a href="generic.html">Yassine Hajji</a></li>
+										<li><a href="elements.html">Medlak</a></li>
+									</ul>
+								</nav>
+
+							<!-- Footer -->
+								<footer id="footer">
+									<p class="copyright" href="https://yassineh.com">&copy; Yassine Hajji</p>
+								</footer>
+
+						</div>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

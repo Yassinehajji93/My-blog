@@ -1,0 +1,111 @@
+<!DOCTYPE HTML>
+<html lang="en">
+	<head>
+		<title>Realtime API with PostgreSQL</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+	</head>
+	<body>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Header -->
+								<header id="header">
+									<a href="index.html" class="logo"><strong>Blog</strong></a>
+									<ul class="icons">
+										<li><a href="https://www.linkedin.com/in/yassine-hajji-473498139/" class="icon fa-linkedin"><span class="label">Linkedin</span></a></li>
+										<li><a href="https://github.com/yassinehajji" class="icon fa-github"><span class="label">Github</span></a></li>
+									</ul>
+								</header>
+
+							<!-- Content -->
+								<section>
+									<header class="main">
+										<h1>Creating a Realtime API with PostgreSQL</h1>
+									</header>
+									    <span class="image main"><img src="images/re-api-pstg/psql-ban.png" alt="" /></span>
+									                     
+								    <p>PostgreSQL is the database that allows us to carry out functions that normally would not be possible with SQL. One of them is to obtain notifications in real time.</p>
+								    <p>Today we will return to the example of the article How to create a JSON API in PostgreSQL with NodeJS and we will add this functionality. This way, when a new element is added to the list, all connected clients will know that there was a change and update their data automatically.</p>
+								    <p>To create a real-time application with PostgreSQL, what we do is send a notification to all clients every time a change is made using the NOTIFY command. When doing so, we must indicate which channel we want to use and, optionally, we can also send a data packet. In the same way, to keep our data updated in real time we have two options:</p>
+								    <p>The first is just to send a notification from NodeJS to a channel every time we make changes. This tells customers that they should update the data that relates to that channel; either by adding the changes that must be applied directly in the notification, or sending it without data and that the clients download the necessary data.</p>
+								    <p>The second option is to use the PostgreSQL console to create a function in our database that sends a notification and then create a trigger that calls this function when an insert-query is detected. This must be done for each table we wish to observe. This last method is difficult to execute and prone to human error. Also, it makes more sense to make this kind of changes from the controller (NodeJS) than from the model (PostgreSQL). So for this example, we'll use the first option.</p>
+								    <h2>In the Backend</h2>
+								    <p>For notifications we will use the node-postgres library to communicate NodeJS with the database; and Socket.IO to communicate with customers via Web Sockets. Let's start by adding these dependencies: server.js</p>
+								        <span class="image main"><img src="images/re-api-pstg/so-ser-re.png" alt="" /></span>
+								    <p>In order for our Web Sockets server to work properly, we must start Express using the HTTP server. server.js</p>  
+								        <span class="image main"><img src="images/re-api-pstg/var-stExpr.png" alt="" /></span> 
+								    <p>Now we must connect node-postgres with our database and execute the LISTEN command by adding the name of the channel we want to listen to. This to be able to segment the notifications of our application.</p>    
+								    <p>For our example we will use a channel that we will call changes. When we receive a notification from PostgreSQL, we will issue a message via Web Sockets to our clients with the change data. If we have more than one channel, we can know which channel sent the notification if we check the value of data.channel. We can pass this information to a switch case to send the correct message, or directly broadcast the name of the channel via Web Sockets. server.js</p>
+								        <span class="image main"><img src="images/re-api-pstg/pstg-var-con.png" alt="" /></span>
+								    <p>Send a notification by PostgreSQL is very easy. Simply execute:_pgClient.query ('NOTIFY_ "<channel_name>"') </ channel_name> when saving information in the database.</p>  
+								        
+								   <h2>server.js</h2>      
+								        <span class="image main"><img src="images/re-api-pstg/var-ser-fun.png" alt="" /></span>
+
+								    <h2>In the Frontend</h2> 
+								    <p>Now that we have the settings in the backend, it's time to make some small adjustments in the ReactJS client. The first thing we must do is create a method to establish the connection through Web Sockets and an object in which we will save this connection. reactApp.jsx</p>  
+								        <span class="image main"><img src="images/re-api-pstg/var-sock-fun.png" alt="" /></span>
+								    <p>Now we must add the additional code to our ReactJS application, this should go in our highest hierarchy component and be placed in the componentDidMount event. The first thing to do is call startSocket () to start our connection. Next, we must create an event that calls downloadData () when we receive a notification. In this case change, so that each time the notification of a change is received, ReactJS will be responsible for downloading the data and making the necessary adjustments in the DOM to update the view.</p>   
+								    
+								    <h2>reactApp.jsx</h2> 
+								        <span class="image main"><img src="images/re-api-pstg/var-sock-fun.png" alt="" /></span>
+								    <p>Do not forget to execute the command jsx -x jsx -w jsx / js / from your console to update the changes you made in your ReactJS application. Now we just need to download the Socket.io library in our client. This is automatically added to our server by default; so we just need to add the socket.io/socket.io.js index.html path</p>   
+								    <p>Ok, now we have an application that works in real time with PostgreSQL.</p> 
+   								        	     
+								</section>
+
+						</div>
+					</div>
+
+				<!-- Sidebar -->
+					<div id="sidebar">
+						<div class="inner">
+
+							<!-- Search -->
+								<section id="search" class="alt">
+									<form method="post" action="#">
+										<input type="text" name="query" id="query" placeholder="Search" />
+									</form>
+								</section>
+
+							<!-- Menu -->
+								<nav id="menu">
+									<header class="major">
+										<h2>Menu</h2>
+									</header>
+									<ul>
+										<li><a href="index.html">Homepage</a></li>
+										<li><a href="Yassineh.com">Yassine Hajji</a></li>
+										<li><a href="medlak.com">Medlak</a></li>
+									</ul>
+								</nav>
+
+							<!-- Footer -->
+								<footer id="footer">
+									<p class="copyright" href="https://yassineh.com">&copy; Yassine Hajji</p>
+								</footer>
+
+						</div>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

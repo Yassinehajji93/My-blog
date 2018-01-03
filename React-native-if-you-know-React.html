@@ -1,0 +1,116 @@
+<!DOCTYPE HTML>
+<html lang="en">
+	<head>
+		<title>React Native if you already know React.js</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+	</head>
+	<body>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Header -->
+								<header id="header">
+									<a href="index.html" class="logo"><strong>Blog</strong></a>
+									<ul class="icons">
+										<li><a href="https://www.linkedin.com/in/yassine-hajji-473498139/" class="icon fa-linkedin"><span class="label">Linkedin</span></a></li>
+										<li><a href="https://github.com/yassinehajji" class="icon fa-github"><span class="label">Github</span></a></li>
+									</ul>
+								</header>
+
+							<!-- Content -->
+								<section>
+									<header class="main">
+										<h1>How to start with React Native if you already know React.js</h1>
+									</header>
+									                     
+								    <p>I would have liked to know this before creating my first mobile apps. I chose React Native because knowing React had a lot of the way ready to feel prepared and have an application with millions of downloads in record time. This is a list of features that perhaps an application will use and tell you about my experience changing the responsive web world chip to the "native" application mode.</p>
+								    
+								    <h2>We do not need media queries</h2>
+								    <p>Only a screen that although can have different sizes always respects the same experience, although since you write at the same time apps for iOS and Android, the closest thing to a Media Query is to do an if between platforms.</p>
+								    
+								    <h2>We don not have forms</h2>  
+								    <p>There is no component that regularizes the data and has a standard format for sending it as FormData, while there is a TextInput that has a variety of properties, such as a field that is autofocus or that is exclusive to a password or email. take to the next point.</p>
+								    
+								    <h2>It's easy to customize the keyboard</h2>
+								    <p>Especialmente para iOS hay muchos tipos de teclado que podemos asignar al Componente TextInput que mejoran muchísimo la experiencia como twitter, url o web-search y claro están los clásicos numéricos o de email.</p> 
+								       <span class="image main"><img src="images/rn-rj/nat-ract.png" alt="" /></span> 
+								    <h2>The top where you see the battery is called the status bar</h2> 
+								    <p>It sounds obvious but even though it took me a couple of minutes to find out that it existed is very powerful in the experience of your application and even more if your app has a dark header and if or if you wonder how to make it go from black to white or more show that a request is being made to the API and show a load icon, this is the component you need StatusBar.</p> 
+
+								    <h2>Developer Experience</h2> 
+								    <p>Accounts with tools such as: debug the js code with access to a console in the browser where you can see all your logs. For example, if you are not sure if you linked an event well. But the best thing is to have Hot and Live Reload which is the feature to redraw the app automatically when you make any changes.</p>
+								    <p>This worked great for me in the emulator. If you are going to debug on the phone, use this tutorial on how to activate it that resolved my life. It was to change a bit the reference to my IP within the configuration of the app. I would have wanted to know it from the beginning.</p>
+								        <span class="image main"><img src="images/rn-rj/rn-rj-re.png" alt="" /></span> 
+								    <h2>Lists</h2>
+								    <p>For my grand finale I have the React Native feature where I honestly felt a little silly at the beginning, ListView.</p>  
+								    <h2>Sticky headers</h2> 
+								    <p>React Native already did the work for you to create a list component that receives "fixed headers" You do not have to hate to redo it, this fixed header is something that you see a lot in the applications to save space and give context of where to be located, you just have to use the stickySectionHeadersEnabled property.</p> 
+
+								    <h2>Separators</h2>
+								    <p>When you make a list you usually put an edge on the bottom of them to separate them visually, this in CSS solved it using pseudo elements and pseudo-classes like: after or: last-child but guess: There is no such thing in React Native, this it hurt a lot. but the ListView component thought of everything and it brings you renderSeparator that does the magic for you without having to think about not doing the render of the last separator since this does it automatically.</p> 
+								        <span class="image main"><img src="images/rn-rj/fun-pro.png" alt="" /></span>
+								    
+								    <h2>Bonus Tracks</h2>    
+								    <p>Expo is included in create-react-native-app is an easy way to start with an application and make debug without the phone is connected to the computer and you can share with a QR the application in which you are working or upload it to your store where anyone can search for it by the name you choose, Without a doubt a great option but eventually you will have to do eject of the app to publish it or if you have to use a dependency that requires native code in your application. So my advice here is to use this option if you are going to make a demo or want to try something fast. If you do an app seriously, go the traditional way from the beginning.</p>
+								    
+								    <h2>Final Tips</h2>
+								    <p>If you come from the world of the web as I most important when creating a mobile application is to think first: "how is this solved in the world of apps?" This will help you to make better searches on the Internet, find the keywords correct, learn new things and of course go the right way.</p>
+								    <p>If you come from the world of the web as I most important when creating a mobile application is to think first: "how is this solved in the world of apps?" This will help you to make better searches on the Internet, find the keywords correct, learn new things and of course go the right way.</p>
+       	     
+								</section>
+
+						</div>
+					</div>
+
+				<!-- Sidebar -->
+					<div id="sidebar">
+						<div class="inner">
+
+							<!-- Search -->
+								<section id="search" class="alt">
+									<form method="post" action="#">
+										<input type="text" name="query" id="query" placeholder="Search" />
+									</form>
+								</section>
+
+							<!-- Menu -->
+								<nav id="menu">
+									<header class="major">
+										<h2>Menu</h2>
+									</header>
+									<ul>
+										<li><a href="index.html">Homepage</a></li>
+										<li><a href="Yassineh.com">Yassine Hajji</a></li>
+										<li><a href="medlak.com">Medlak</a></li>
+									</ul>
+								</nav>
+
+							<!-- Footer -->
+								<footer id="footer">
+									<p class="copyright" href="https://yassineh.com">&copy; Yassine Hajji</p>
+								</footer>
+
+						</div>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE HTML>
+<html lang="en">
+	<head>
+		<title>Relate models in MongoDB</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+	</head>
+	<body>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Header -->
+								<header id="header">
+									<a href="index.html" class="logo"><strong>Blog</strong></a>
+									<ul class="icons">
+										<li><a href="https://www.linkedin.com/in/yassine-hajji-473498139/" class="icon fa-linkedin"><span class="label">Linkedin</span></a></li>
+										<li><a href="https://github.com/yassinehajji" class="icon fa-github"><span class="label">Github</span></a></li>
+									</ul>
+								</header>
+
+							<!-- Content -->
+								<section>
+									<header class="main">
+										<h1>Relate models in MongoDB</h1>
+									</header>
+                 
+								    <p>MongoDB is a non-relational database, that is, it is not like the typical SQL databases (MySQL, Oracle, PostgreSQL, etc ...) where there are relationships between one table and another. Let's see a classic example.</p>
+								    <p>Imagine a database of books. We would have a table with the titles of the books and another with the data of the authors. The author field in the table of books, would point to an ID or primary key of an author of the authors table. In MongoDB we can do something similar, by means of references and the populate method of MongoDB.</p>
+									<p>Let's continue with the previous example. An author model in Node.js using mongoose would be such that:</p>
+
+									    <span class="image main"><img src="images/mogdb-rel/var-mong.png" alt="" /></span>
+									<p>And suppose a simple model for book as follows:</p>
+									<p>At the beginning it was the only way to use JavaScript in web pages, but little by little it has gotten complicated.</p> 
+                                        <span class="image main"><img src="images/mogdb-rel/var-mongoose.png" alt="" /></span>
+							 
+									<p>If we look, for the author field in the book model we have used the Schema.ObjectId type and the reference to the Author model. This will allow us to establish the relationship between a field of one table and another.</p>								   
+									<p>But if we do not have SQL queries, and we ask for a list of all the books in the database, what data will come to us?</p>
+									<p>The first thing we would program would be this (in Express / Node.js):</p>
+									    <span class="image main"><img src="images/mogdb-rel/app-res.png" alt="" /></span>
+									<p>And if we have several books registered in the database, we would return a JSON similar to this one:</p> 
+									    <span class="image main"><img src="images/mogdb-rel/id-titl.png" alt="" /></span>
+		
+									<p>In the author field we obtain the reference in ObjectID format of the author, but not its complete file. What happens if we want to show in a single JSON all the information to be able to paint it from a single call in our webapp? For that we need to make use of the populate method of MongoDB that also implements the mongoose library.</p>  
+								    <p>In our previous driver, we must expand with the next comand:</p>
+								        <span class="image main"><img src="images/mogdb-rel/app-lib-get.png" alt="" /></span>
+								    <p>The line Author.populate (books, {path: "author"}, ...); takes the array of objects books and tells you that in the path author "popule" with the data of the model Author.</p>
+								    <p>We can see that the _id object of the author field has been replaced by the complete author model to which it refers. In this way we get a behavior similar to the typical relational in the SQL databases in MongoDB.</p>    
+
+
+
+								     
+								</section>
+
+						</div>
+					</div>
+
+				<!-- Sidebar -->
+					<div id="sidebar">
+						<div class="inner">
+
+							<!-- Search -->
+								<section id="search" class="alt">
+									<form method="post" action="#">
+										<input type="text" name="query" id="query" placeholder="Search" />
+									</form>
+								</section>
+
+							<!-- Menu -->
+								<nav id="menu">
+									<header class="major">
+										<h2>Menu</h2>
+									</header>
+									<ul>
+										<li><a href="index.html">Homepage</a></li>
+										<li><a href="Yassineh.com">Yassine Hajji</a></li>
+										<li><a href="medlak.com">Medlak</a></li>
+									</ul>
+								</nav>
+
+							<!-- Footer -->
+								<footer id="footer">
+									<p class="copyright" href="https://yassineh.com">&copy; Yassine Hajji</p>
+								</footer>
+
+						</div>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

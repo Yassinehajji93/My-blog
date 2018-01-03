@@ -1,0 +1,119 @@
+<!DOCTYPE HTML>
+<html lang="en">
+	<head>
+		<title>Ruby on Rails features</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+	</head>
+	<body>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Header -->
+								<header id="header">
+									<a href="yassinehajji.com/blog/" class="logo"><strong>Introducción a Ruby on Rails</strong></a>
+									<ul class="icons">
+										<li><a href="https://www.linkedin.com/in/yassine-hajji-473498139/" class="icon fa-linkedin"><span class="label">Linkedin</span></a></li>
+										<li><a href="https://github.com/yassinehajji" class="icon fa-github"><span class="label">Github</span></a></li>
+									</ul>
+								</header>
+
+							<!-- Content -->
+								<section>
+									<header class="main">
+										<h1>Introducción a Ruby on Rails first steps</h1>
+									</header>
+									    
+                 
+								    <P>Ruby is a programming language created thinking about the happiness of the developers, Ruby uses a very clean and easy to read syntax even for those who do not know how to program it, allowing the developer to pour all their energy into the logic of their program. Ruby On Rails, is an MVC framework for the development of web applications in Ruby, which was created with the intention of maintaining the essence of Ruby, that is, thinking about the happiness of all those who use it.</P>
+                                        <span class="image main"><img src="images/int-ror/init-ban.png" alt="" /></span>
+
+                                    <h2>Ruby on Rails at begining</h2> 
+
+                                    <p>There are two premises or basic principles that we must understand when programming with Ruby on Rails.</p>
+                                    <p>Do not Repeat Yourself (DRY): this programming paradigm is not exclusive to Rails, and consists of developing our applications by modularizing as much as possible to facilitate the reuse of the code without repetitions that cause confusion and complicate the maintenance of our code.</p>
+                                    <p>Convention on configuration: Rails is designed with preconfigured instructions, it depends on the developer if he executes them that way or if he modifies them according to the needs of each project.</p>
+
+                                    <h2>Installation</h2>
+                                    <p>Ruby is a multiplatform language, very easy to install and use in almost all existing operating systems, even compiling its source code, directly. Therefore, Rails is also cross-platform, and equally easy to install. To install Rails we must first make sure that we have a Ruby version installed. We can do it with the following command from a terminal:</p> 
+                                       <span class="image main"><img src="images/int-ror/ruby-v.png" alt="" /></span>
+                                    <p>To install Rails in Windows, there is the Rails installer tool. It is not complicated to use, however it is recommended to avoid building both productive and development environments, for Rails, on Windows (the new gods and the old ones will know why), and if you are using Windows, do not be discouraged, you can use a machine virtual with any Linux distribution. In Linux, we can install both Ruby and Rails, from the package managers and they will be installed directly in our system. -Install the most recent version of Ruby and Rails.</p>  
+                                        <span class="image main"><img src="images/int-ror/ru-su-init.png" alt="" /></span>
+                                    <p>However, the direct installation of both is not recommended, since we can fall into errors when updating, or when we want to test with a new version and then go back to working on a previously developed application, we would have to uninstall one and install another, losing time. To solve this type of problems, the community created alternatives, there are several, but the most popular and most comfortable to use is RVM, Ruby Version Manager. -Install RVM \ curl -sSL https://get.rvm.io | bash -s stable --ruby --rails Once RVM is installed, it will allow us to install / choose the version of Ruby and Rails that we want to use in each project.</p>    
+                                    <p>We can also configure our Gemsets, or groups of gems, gems is the way they are called in Ruby bookstores. The Gemsets that we install will be available to be reused in different projects. It is also a good idea to use RVM in production environments, even if we only have one Gemset, since it facilitates the upgrade / downgrade of the Ruby and Rails versions. -We install Ruby versions in the following way (2.2.0 -> is the Ruby version number):</p>
+                                        <span class="image main"><img src="images/int-ror/rvm-init.png" alt="" /></span>
+                                    <p>We tell RVM which version of Ruby we want to use:</p> 
+                                        <span class="image main"><img src="images/int-ror/rvm-use.png" alt="" /></span>
+                                    <p>List the different versions of Ruby that we have:</p>    
+                                        <span class="image main"><img src="images/int-ror/rvm-list.png" alt="" /></span>
+                                    <p>We can do a lot of things with RVM, such as configuring a Ruby version by default, or tell RVM that we want to use the Ruby installed directly on the machine, all the documentation about it is found on the RVM official site. -We believe our Gemset, we will call it 'misgemas':</p>  
+                                        <span class="image main"><img src="images/int-ror/rvm-gemset .png" alt="" /></span>
+                                    <p>We tell RVM that we will work with this Gemset:</p> 
+                                        <span class="image main"><img src="images/int-ror/rvm-2.2-misg.png" alt="" /></span>
+                                    <p>As Rails behaves like a gem for its installation, now we can install the version that we want Rails inside our Gemset, in this way: gem install rails -v 4.1.0</p> 
+                                    <p>We can have as many Gemsets as we have projects, and we can list them with the following command:</p>   
+                                    <p>rvm gemset list_all Once we are comfortable with the Ruby version and the gemset we want to use, we proceed to create our first app in Rails.</p>
+                                    <p>We make sure that all the gems that Rails uses are installed, with the following command: bundle install.</p>
+                                    <p>Now if we are ready to create our application, we run the following command: rails new PlatziRails (example).</p>
+                                    <p>This creates a folder with the same name -PlatziRails- within the directory in which we are located, where it generated a structure of files and folders, which are all our application, for now. -From the same terminal we are inside that directory.</p>
+                                        <span class="image main"><img src="images/int-ror/cd-railpla.png" alt="" /></span>
+                                    <p>We launch our app</p>  
+                                        <span class="image main"><img src="images/int-ror/rails-serv.png" alt="" /></span>
+                                    <p>We go to our browser and enter the address http: // localhost: 3000, and if there is no error we must see the page that by default brings Rails configured. Welcome to Ruby From here we can start to get into Rails taking advantage of all its benefits</p>    
+
+								</section>
+
+						</div>
+					</div>
+
+				<!-- Sidebar -->
+					<div id="sidebar">
+						<div class="inner">
+
+							<!-- Search -->
+								<section id="search" class="alt">
+									<form method="post" action="#">
+										<input type="text" name="query" id="query" placeholder="Search" />
+									</form>
+								</section>
+
+							<!-- Menu -->
+								<nav id="menu">
+									<header class="major">
+										<h2>Menu</h2>
+									</header>
+									<ul>
+										<li><a href="index.html">Homepage</a></li>
+										<li><a href="Yassineh.com">Yassine Hajji</a></li>
+										<li><a href="medlak.com">Medlak</a></li>
+									</ul>
+								</nav>
+
+							<!-- Footer -->
+								<footer id="footer">
+									<p class="copyright" href="https://yassineh.com">&copy; Yassine Hajji</p>
+								</footer>
+
+						</div>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

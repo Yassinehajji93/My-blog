@@ -1,0 +1,159 @@
+<!DOCTYPE HTML>
+<html lang="en">
+	<head>
+		<title>Intruduction Vue.js</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+	</head>
+	<body>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Header -->
+								<header id="header">
+									<a href="index.html" class="logo"><strong>Introduction Vue</strong></a>
+									<ul class="icons">
+										<li><a href="#" class="icon fa-linkedin"><span class="label">Linkedin</span></a></li>
+										<li><a href="#" class="icon fa-github"><span class="label">Github</span></a></li>
+									</ul>
+								</header>
+
+							<!-- Content -->
+								<section>
+									<header class="main">
+										<h1>Introducction to Vue.Js</h1>
+									</header>
+
+									<span class="image main"><img src="images/init-vuejs/intro-vuejs2.jpg" alt="" /></span>
+
+									<p>With this article I want to show you how easy it is to start working with Vue so you can see its simplicity. To see how it works Vue you do not need Webpack, nor Babel, nor transpilers, nor a complex structure of files and folders, you only need a lifelong HTML file, a CSS style sheet, a JavaScript file for the code and import the library from a CDN such as cdnjs.org.</p>
+									
+									<p>We are going to use this index.html file:</p>
+
+                                        <span class="image main"><img src="images/init-vuejs/index-vuejs.png" alt="" /></span>
+
+									
+									<p> It is a normal HTML, only to emphasize that we have a div element with the id app and the link to library vue.js in its version 2. Now we are going to add JavaScript code and you can write it in the index.html inside a script element or use a separate JavaScript file and link it just like the Vue library. It is a normal HTML, only to emphasize that we have a div element with the id app and the link to library vue.js in its version 2. </p>
+										
+
+									<hr class="major" />
+
+									<h2>Vue initialization</h2>
+									<p>In order to start working with Vue, we have to create a new instance and pass certain properties to the configuration object, including the DOM element where we will render or make use of Vue. In this case it would be the div with the ID app:</p>
+									    <span class="image main"><img src="images/init-vuejs/init-vuejs.png" alt="" /></span>
+
+
+									<p>Something as simple as that is what is needed to initialize Vue in a web project. Now let's see more things like for example how data is displayed using double data-binding:</p>
+									    <span class="image main"><img src="images/init-vuejs/show-dt-vuejs.png" alt="" /></span>
+
+									<hr class="major" />
+
+									<h2>Show data</h2>
+									<p>Taking the previous HTML and placing the following between the div id = "app":</p>
+									    
+
+									<p>We are indicating that our instance of Vue is going to have a type of data called message and that we can manipulate it from the code.</p>
+									<p>To do this we simply add a new property-object called data where all the properties and / or data models that we want to use in the view will be.</p>
+									    <span class="image main"><img src="images/init-vuejs/mssg-vuejs.png" alt="" /></span>
+
+									<hr class="major" />
+
+									<h2>Events and Methods</h2>
+									<p>Developing a SPA is that there are changes dynamically in our project. We can achieve this by using methods that make changes and events that trigger these methods.</p>
+
+									<p>The methods are indicated just like the data in a property-object called methods.</p>
+
+									<p>We are going to add a button element that listens to a click event and triggers a toggle method, showing that the only thing it will do is change the value of the data to show the opposite to show the previous elements or not. It would be something like this:</p>
+									    <span class="image main"><img src="images/init-vuejs/methode-vuejs.png" alt="" /></span>
+
+									<p>Now the JavaScript code would be the next:</p>
+									    <span class="image main"><img src="images/init-vuejs/ev-mth-vuejs.png" alt="" /></span> 
+
+									<p>Realize that to make use of the data show within the methods, we have to use the this object if we could not reference it and use it.</p> 
+
+									<p>Now, every time we click on the button, the information will be shown or hidden in the browser.</p>
+									
+								    <hr class="major" />
+
+									<h2>Templates</h2>
+									<p>We can also work with templates, that is, have the HTML code in our instance of Vue. It is not the best practice, but for something timely it can be very useful. Thus, for example, we worked with Angular v1 in its beginnings.</p>
+
+									<p>TWe can reduce the previous code to the following HTML and JavaScript.</p>
+									    <span class="image main"><img src="images/init-vuejs/template-vuejs.png" alt="" /></span> 
+
+									<p>We have used the Vue template property to add the HTML. Keep in mind that just like in React, everything must always be included in a single element of the DOM..</p>
+									
+									<p>If this does not convince you, you can use the template HTML5 element and reference it within the Vue instance as follows:</p>
+									    <span class="image main"><img src="images/init-vuejs/templ-dom-vuejs.png" alt="" /></span>     
+
+									<hr class="major" />
+
+									<h2>Browse data listings</h2>
+									<p>One of the things that are most used in projects is to go through a list of items to display on the screen. In Vue it is very simple with the v-for directive and it is done in a very similar way to how it is done in Angular.</p>
+
+									<p>Imagine that we have a data in our model, which is an array of objects called courses:</p>
+									    <span class="image main"><img src="images/init-vuejs/brow-list-vuejs.png" alt="" /></span> 
+
+									<p>To show the information in the HTML view, with a list for example and each item li to be a link to the course, we would have to do the following. (Note the data bind using the abbreviated syntax of: instead of v-bind in the key and href directives):</p>   
+									    <span class="image main"><img src="images/init-vuejs/brow-list2-vuejs.png" alt="" /></span> 
+
+									<hr class="major" />
+
+									<h2>Summary</h2>
+									<p>Realize that all this we have been able to execute in a single HTML file without using any type of tool, NPM or transpiler. It is pure HTML and JavaScript (and CSS if we had used it) and it allows you to have a first contact with the library and see what it can do with it and how it works.</p>
+								</section>
+
+						</div>
+					</div>
+
+				<!-- Sidebar -->
+					<div id="sidebar">
+						<div class="inner">
+
+							<!-- Search -->
+								<section id="search" class="alt">
+									<form method="post" action="#">
+										<input type="text" name="query" id="query" placeholder="Search" />
+									</form>
+								</section>
+
+							<!-- Menu -->
+								<nav id="menu">
+									<header class="major">
+										<h2>Menu</h2>
+									</header>
+									<ul>
+										<li><a href="index.html">Homepage</a></li>
+										<li><a href="generic.html">Yassine Hajji</a></li>
+										<li><a href="elements.html">Medlak</a></li>
+									</ul>
+								</nav>
+
+							<!-- Footer -->
+								<footer id="footer">
+									<p class="copyright" href="https://yassineh.com">&copy; Yassine Hajji</p>
+								</footer>
+
+						</div>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

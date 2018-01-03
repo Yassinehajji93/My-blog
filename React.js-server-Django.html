@@ -1,0 +1,124 @@
+<!DOCTYPE HTML>
+<html lang="en">
+	<head>
+		<title>Using React.js on the server with Django</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+	</head>
+	<body>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Header -->
+								<header id="header">
+									<a href="index.html" class="logo"><strong>Blog</strong></a>
+									<ul class="icons">
+										<li><a href="https://www.linkedin.com/in/yassine-hajji-473498139/" class="icon fa-linkedin"><span class="label">Linkedin</span></a></li>
+										<li><a href="https://github.com/yassinehajji" class="icon fa-github"><span class="label">Github</span></a></li>
+									</ul>
+								</header>
+
+							<!-- Content -->
+								<section>
+									<header class="main">
+										<h1>Using React.js on the server with Django</h1>
+									</header>
+									                     
+								    <p>One of the great advantages of React.js is that it is possible to render our components on the server without complications. However, doing this usually involves starting to use Node.js, so in applications written in other technologies it is normal to not use this feature. In Platzi we used Python + Django for our backend (among other technologies), so in the first instance it seemed that we would not be able to use the server render with React.js ... But, after much research and experimentation, we could find a way to implement this feature, and thus give a better experience to our users.</p>
+								    
+								    <h2>Why does the server render matter?</h2>
+								    <p>Before we see how to implement it, let's see what it is useful for us to use server render, and why we need to use it. When we make an application with rendering of views in the browser (for example, with Angular.js), the HTML code that we send to the user's browser is usually something like this:</p>							    
+								        <span class="image main"><img src="images/rec-django/ma-app.png" alt="" /></span> 
+								    
+								    <h2>This means that:</h2>    
+								    <p>When the user enters our site, they will see a blank page while downloading our JavaScript code;</p>
+								    <p>The application is initialized and requests the necessary data via AJAX (if we do not send them as JSON in the HTML)</p>
+								    <p>And, finally, our page is rendered.</p>
+								    <p>Let's imagine that receiving the initial HTML takes half a second; lower the JS and styles, another second and a half; and bringing the data via AJAX is another half second more. In short, they are two seconds until the user sees our page. That this occurs negatively affects the user experience of our site, making it seem very slow. To solve this, we must return to something that is done from the beginning of the web: send the HTML with the content from the server. And it turns out that React.js makes this easy, by rendering our application to a string with the HTML, which we can then send to the browser. In this way, our initial HTML would become something like this:</p>
+
+								       <span class="image main"><img src="images/rec-django/main-app.png" alt="" /></span>
+								    <p>If we render the page on the server, it takes a while - say - half a second (to simplify the example); this means that, now, receiving the initial HTML takes a whole second, but the user will see something on the screen in half the time. Thus, we give the impression that the page loads twice as fast. After another two seconds, once the JS + CSS is downloaded and the data is brought by AJAX, we can start our application in the browser, even a Single-Page Application.</p>   
+
+								    <h2>Using React.js with Django</h2>	
+								    <p>Understanding why to render in the browser, we were shocked that we had no way to render React.js in Django, since this is Python, while we needed a Node.js server to work, supposedly. After trying several ideas, such as using a command-line program that runs on each request, the Platzi development team came to the conclusion that it was best to create a very fast and optimized Node.js application. that will render React.js, and to which Django will ask for the HTML when it needs it. The communication between Node.js and Django we decided to do it by HTTP using the POST method, and in the body of our requests, indicate the path of the component to render and a JSON with the data that the component will use. Why? Starting a Node.js process took up to twice the time needed to start and complete the render; Meanwhile, a server allowed us to start it once and keep it waiting for requests.</p>
+
+								    <h2>Creating the Node.js server</h2>	
+								    <p>We have the idea: now we are going to program it. The first thing is our Node.js server; for this, we are going to install two dependencies first:</p>	
+								        <span class="image main"><img src="images/rec-django/npm-i-re.png" alt="" /></span>
+								    <p>Installed this, we need to load our modules:</p> 
+								        <span class="image main"><img src="images/rec-django/con-re-rea.png" alt="" /></span>	
+								    <p>With http we are going to start our server; with querystring, let's parse the body of the POST request. react is necessary whenever we use a component, and react-dom / server to render to strings. Now, to start our server, we use this code:</p> 
+								        <span class="image main"><img src="images/rec-django/con-ser-h.png" alt="" /></span>
+								    <p>And to handle the requests we define this function:</p>    
+								        <span class="image main"><img src="images/rec-django/func-dja.png" alt="" /></span>
+
+								     <h2>Creating the Python client</h2>
+								     <p>Once the render server is created in Node.js, we need to create a client capable of communicating with it from Python. To do this, we start a Python module by creating a directory (for example, render) with a file __init__.py and a react.py, where our client will be.</p>     	
+								        <span class="image main"><img src="images/rec-django/json-im.png" alt="" /></span>
+								    
+								    <h2>Creating a template tag for our client</h2>
+								    <p>Within the directory of our module, we will create a directory called templatetags; inside it we create a new__init__.py and a render.py file where the code of our Django template tag will be.</p>    		
+								        <span class="image main"><img src="images/rec-django/fro-dja-tem.png" alt="" /></span>
+								    <h2>Using it in our templates</h2>  
+								    <p>Finally, we just have to go to our HTML templates of Django, load the template tag and use it, giving it the necessary data:</p> 
+								        <span class="image main"><img src="images/rec-django/lo-rend.png" alt="" /></span>
+								    <p>In this way, we can execute render indicating the route and the data: a variable with a dictionary sent from our Django view (views.py). Each time the user enters our application, the template tag will execute the client that asks the Node.js server to render the component, and return the HTML that the user will receive in their browser. An important detail to consider is that this implementation does not work with code written in JSX, and using ECMAScript features that Node.js does not support. For this reason, we are obliged to use Babel to convert it to compatible code before using server render. The reason for not adding support for Babel? It is slow, and doing it in each request would delay the response time of the render server, so we would lose performance, the goal after this implementation.</p>
+								    <h2>Possible improvements</h2>  
+								    <p>The solution that I present today can be improved, for example, by implementing Redis as a cache, in order to avoid asking the server to re-render a component with certain data that was used before. In this way, you could reduce load times even more, improving the user experience of step. Another possible improvement to implement is to tell the render server if we want it to generate static HTML (without the data-reactid attributes) to reduce the size of the generated file.</p>      
+								     								    
+								</section>
+
+						</div>
+					</div>
+
+				<!-- Sidebar -->
+					<div id="sidebar">
+						<div class="inner">
+
+							<!-- Search -->
+								<section id="search" class="alt">
+									<form method="post" action="#">
+										<input type="text" name="query" id="query" placeholder="Search" />
+									</form>
+								</section>
+
+							<!-- Menu -->
+								<nav id="menu">
+									<header class="major">
+										<h2>Menu</h2>
+									</header>
+									<ul>
+										<li><a href="index.html">Homepage</a></li>
+										<li><a href="Yassineh.com">Yassine Hajji</a></li>
+										<li><a href="medlak.com">Medlak</a></li>
+									</ul>
+								</nav>
+
+							<!-- Footer -->
+								<footer id="footer">
+									<p class="copyright" href="https://yassineh.com">&copy; Yassine Hajji</p>
+								</footer>
+
+						</div>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

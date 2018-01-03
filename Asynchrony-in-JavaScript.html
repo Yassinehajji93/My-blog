@@ -1,0 +1,139 @@
+<!DOCTYPE HTML>
+<html lang="en">
+	<head>
+		<title>Asynchrony in JavaScript</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+	</head>
+	<body>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Header -->
+								<header id="header">
+									<a href="index.html" class="logo"><strong>Blog</strong></a>
+									<ul class="icons">
+										<li><a href="https://www.linkedin.com/in/yassine-hajji-473498139/" class="icon fa-linkedin"><span class="label">Linkedin</span></a></li>
+										<li><a href="https://github.com/yassinehajji" class="icon fa-github"><span class="label">Github</span></a></li>
+									</ul>
+								</header>
+
+							<!-- Content -->
+								<section>
+									<header class="main">
+										<h1>Ways to handle asynchrony in JavaScript</h1>
+									</header>
+									                     
+								    <p>If there is something that characterizes JavaScript, it is the asynchrony that some functions present. Specifically those that perform input / output operations such as writing or reading the disk or an AJAX request.</p>
+								    <p>In JavaScript there are several ways to handle these processes in our developments.</p>
+								    <p>Let's see what they are.</p>
+
+								    <h2>Callbacks</h2>
+								    <p>It is the first and the most common way to control asynchrony in JavaScript</p>
+								    <p>In the following example we have a function that receives as parameters an input data: data, an array with array data and a callback: callback function.</p>
+								    <p>The operation of the function is very simple, the array is added the data that comes by parameter and when it finishes, it calls the callback function that it receives per parameter, in that case the flame with the modified array.</p>
+								    <p>I have added a small block to check if the array exists and if not to throw an error that we will pass to the callback.</p>
+								        <span class="image main"><img src="images/js-asyn/fun-addtoar.png" alt="" /></span> 
+								    <p>In the following code we see how to call this function and treat the callback:</p>
+								        <span class="image main"><img src="images/js-asyn/var-att-3.png" alt="" /></span>   
+								    <p>What will he give back? When the addToArray function is finished, the callback will be executed and it will show us the array with the new data.</p> 
+								    <p>It seems silly because we could add the data to the array and then print it with console.log, but imagine that this operation of adding an item to the array was asynchronous, as it could be a call via AJAX.</p>    
+								    <p>To simulate this we are going to use the setTimeout function to add a delay of 1 second:</p>
+								        <span class="image main"><img src="images/js-asyn/fun-re-call.png" alt="" /></span>
+								    <p>If we did not have a callback function, and the addToArray function was:</p>    <span class="image main"><img src="images/js-asyn/var-array-2.png" alt="" /></span>
+								    <p>What will he give back? When the addToArray function is finished, the callback will be executed and it will show us the array with the new data.</p>
+								    <p>It seems silly because we could add the data to the array and then print it with console.log, but imagine that this operation of adding an item to the array was asynchronous, as it could be a call via AJAX.</p>
+								    <p>To simulate this we are going to use the setTimeout function to add a delay of 1 second:</p>
+								        <span class="image main"><img src="images/js-asyn/fun-re-call.png" alt="" /></span>
+								    <p>If we did not have a callback function, and the addToArray function was:</p>
+								        <span class="image main"><img src="images/js-asyn/fun-settim.png" alt="" /></span>  
+								    <p>And execute the function, we would return the following:</p> 
+								        <span class="image main"><img src="images/js-asyn/var-array.png" alt="" /></span>    
+								    <p>When we print the array the new item has not yet been added, therefore the behavior that happens is not the one sought. This way the callbacks help us deal with this.</p>   
+								    <p>But if we have several functions like this ... the following can happen:</p>
+								        <span class="image main"><img src="images/js-asyn/var-arr-if.png" alt="" /></span> 
+								    <p>The dreaded Callback Hell or Pyramid of Doom</p>
+								    <p>Luckily this has been solved using libraries like async, or using promises with libraries like Q</p>   
+
+								    <h2>Promises</h2>
+								    <p>Fortunately, in the new JavaScript specification (ES6 or ES2015) the Promises are already native and we do not need to require third-party libraries.</p>  
+								    <p>Let's see the same example as before but using native promises of ES2015</p>
+								        <span class="image main"><img src="images/js-asyn/fun-prom.png" alt="" /></span> 
+								    <p>Now the addToArray function creates a Promise object that receives as parameters a function with the functions resolve and reject.</p> 
+								    <p>Resolve we will call it when our execution finishes correctly.</p> 
+								    <p>In this way, we can write code more elegantly, and the previous Callback Hell can be solved like this:</p>   
+								        <span class="image main"><img src="images/js-asyn/const-array.png" alt="" /></span>
+								    <p>This is known as nesting promises.</p> 
+								    <p>The way to deal with errors in a promise is through the catch function that collects what we send in the function reject within the Promise. And this function only has to be invoked once, we do not need to check each call if there is an error or not. Which greatly reduces the amount of code.</p>
+								        <span class="image main"><img src="images/js-asyn/cont-arr-cat.png" alt="" /></span>  
+
+								    <h2>Async/Await</h2>   
+								    <p>The next step in the treatment of asynchronous processes is to use the async / await methods. This form is not available in the standard of ES6 or ES2015, but it is part of the next version ES7 or ES2016, but what we can use today with Babel and the preset of plugins stage-3.</p>   
+								    <p>The syntax for a function that uses async / await is as follows.</p>
+								        <span class="image main"><img src="images/js-asyn/asy-fun-try.png" alt="" /></span>  
+								    <p>The function will be preceded by the reserved word async and inside it we will have a try-catch block. Inside the try we will call the asynchronous function with the reserved word await in front, with this we make the function wait for it to be executed and the result of it is available in this case in the result variable.</p>  
+								    <p>If an error occurs during the execution, the catch block will be executed where we will deal with the error.</p>  
+								    <p>Combining async / await with a function based on promises, we can do the following with the example we were seeing:</p>
+								        <span class="image main"><img src="images/js-asyn/prodat-prom.png" alt="" /></span> 
+								    <p>In this way we are writing code sequentially but JavaScript is below executing asynchronous code.</p>  
+								    <p>This allows that, developers that are less familiar with JavaScript and its behavior, do not have so many entry barriers to start working with the language.</p>   
+
+
+
+
+								</section>
+
+						</div>
+					</div>
+
+				<!-- Sidebar -->
+					<div id="sidebar">
+						<div class="inner">
+
+							<!-- Search -->
+								<section id="search" class="alt">
+									<form method="post" action="#">
+										<input type="text" name="query" id="query" placeholder="Search" />
+									</form>
+								</section>
+
+							<!-- Menu -->
+								<nav id="menu">
+									<header class="major">
+										<h2>Menu</h2>
+									</header>
+									<ul>
+										<li><a href="index.html">Homepage</a></li>
+										<li><a href="Yassineh.com">Yassine Hajji</a></li>
+										<li><a href="medlak.com">Medlak</a></li>
+									</ul>
+								</nav>
+
+							<!-- Footer -->
+								<footer id="footer">
+									<p class="copyright" href="https://yassineh.com">&copy; Yassine Hajji</p>
+								</footer>
+
+						</div>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

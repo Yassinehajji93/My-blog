@@ -1,0 +1,153 @@
+<!DOCTYPE HTML>
+<html lang="en">
+	<head>
+		<title>Redux basic concepts</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+	</head>
+	<body>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Header -->
+								<header id="header">
+									<a href="index.html" class="logo"><strong>Blog</strong></a>
+									<ul class="icons">
+										<li><a href="#" class="icon fa-linkedin"><span class="label">Linkedin</span></a></li>
+										<li><a href="#" class="icon fa-github"><span class="label">Github</span></a></li>
+									</ul>
+								</header>
+
+							<!-- Content -->
+								<section>
+									<header class="main">
+										<h1>Redux basic concepts</h1>
+									</header>
+
+								        <span class="image main"><img src="images/redux-func/ban-redux.png" alt="" /></span>
+
+									<p>In the previous post we saw what the Flux architecture was and how it worked. Being in some way, a substitute or evolution of the Model-View-Controller pattern.</p>
+									<p>Just as there is object-oriented programming and there are languages that implement it (like Java for example), or the MVC pattern and there are frameworks or libraries that implement it (such as AngularJS or Backbone for example), Redux is a library that implements the Flux design pattern, with some variations that we will see throughout the article.</p>
+									<p>Redux is a very small JavaScript library (barely 2KB in total), with very little code. Its API is only 5 functions and the most important thing is that it is pure JavaScript, so it is agnostic to the framework and can be used with any framework library (Angular, Polymer, React, etc ...)</p>
+									    <span class="image main"><img src="images/redux-func/redux-ban2.png" alt="" /></span>
+								    
+								    <hr class="major" />
+									<h2>What does Redux do?</h2>
+
+									<p>Redux is in some way responsible for decoupling the global state of a web application (in Front-End) from the visual part, that is, the components.</p>
+									<p>Surely you ask yourself what is the status of the application?</p>
+									<p>The status of the application.</p>
+									<p>The status in a web or application can be several things, usually it is the data that you can receive through a REST API or WebService (for example a list of products), it also refers to the state of the UI at a certain moment, for example: a panel is displayed or not, the user information must appear or not, an error message, etc ...</p>
+									<p>To carry out this state management, Redux implements Flux but with some modifications:</p>			
+
+									<hr class="major" />
+									<h2>The 3 key concepts of Redux</h2>
+									<p>Redux is based on three main concepts:</p>
+									<h2>1. A single "source of truth"</h2>
+									<p>Flux proposes that there are several Stores to store the state. However Redux simplifies this by using a single Store. The whole state is stored in a tree. In JavaScript this would be achieved with a JavaScript object like the following:</p>
+									    <span class="image main"><img src="images/redux-func/init.stat.png" alt="" /></span>
+									<h2>2. The status is read-only</h2>
+									<p>We can not modify the state directly, we can only read it to represent it in the view and if we want to modify it, we have to do it through actions.</p>    
+									<p>An action is simply a JavaScript object that includes at least one type attribute that indicates the type of action we are issuing and in case there is data associated with the change or modification, a payload attribute with that data::</p> 
+									    <span class="image main"><img src="images/redux-func/tp-l-pro.png" alt="" /></span>
+
+									<p>These actions are usually returned through an Action Creator that would be of this type:</p>   
+									    <span class="image main"><img src="images/redux-func/fun-pro-lo.png" alt="" /></span> 
+
+									<hr class="major" />
+									<h2>3. Changes with pure functions.</h2>
+									<p>Since we can not modify the state directly (it has to be through actions) and the state is stored in a single Store, to specify how to make the changes in the state tree we use pure functions called reducers.</p>
+									<p>A pure function is simply a function that, with the same input data, returns the same result. That is, the following function would be a pure example function:</p>   
+									    <span class="image main"><img src="images/redux-func/func-plus.png" alt="" /></span>  
+
+									<p>This function for the same parameters, always returns the same. If we call a sum (1,2) it will always return 3. In this way it is easier to debug and find errors, and it is easier to test.</p>   
+									<p>The reducer is simply that, a function that receives two parameters, the initial state and an action and depending on the type of action will perform one operation or another in the state. Always immutably, we can not modify the state, if not create a copy from the previous one. In this way it is easier to trace possible errors.</p> 
+
+									<p>A reducer looks like this:</p>
+									    <span class="image main"><img src="images/redux-func/func-red-sw.png" alt="" /></span>  
+
+									<hr class="major" />
+									<h2>3. Changes with pure functions.</h2>
+									<p>As I mentioned earlier, the API or functions that Redux exports are very few. We will explain here the most used when you create an application with Redux:</p> 
+									<h2>createStore</h2>
+									<p>This function, as its name suggests, creates the central store where the global status of the application will be stored.</p>
+									<p>The function receives as a parameter a reducer and optionally an initial state and an enhancer that serves us to later add Middlewares. And it returns the created store.</p> 
+									    <span class="image main"><img src="images/redux-func/con-st-red.png" alt="" /></span>  
+									<p>With the Store created we have several methods that we can use:</p>
+									<p>store.getState (): Returns the current status of the store.</p> 
+									<p>store.dispatch (action): Issues an action, is the only way to try to change the state.</p> 
+									<p>store.subscribe (listener): Allows you to subscribe to the changes that occur. The listener is called each time an action is issued and a part of the state may have been changed.</p>
+									<p>There are others but these are the most used.</p> 
+
+									<h2>combineReducers</h2> 
+
+								    <p>As in Redux we have a single store to store the entire state of the application. It is a good practice to have several reducers (one for each part broken down by the state) and with this function we can combine them in a single reducer to pass as a parameter to the createStore function.</p>
+									<p>Why do you have to reduce several? Because in this way we divide our problem into several parts and it is easier to modularize our application.</p> 
+									<p>Por ejemplo si tenemos un estado como el siguiente:</p> 
+									    <span class="image main"><img src="images/redux-func/con-init-user.png" alt="" /></span>
+									<p>It would be interesting to have a reducer that controls the part of the state dedicated to the user, another reducer for all the actions associated with the manipulation of the products. Another one for the current product and another for the management of the cart, so that we can do the following.</p>
+									    <span class="image main"><img src="images/redux-func/fun-user-red.png" alt="" /></span> 
+									<h2>applyMiddleware</h2>
+									<p>This function allows us to add Middlewares to Redux. Middlewares are functions that run between when an action is issued and the state changes. We can add a multitude of them, and one of the most used would be Redux-Thunk</p>
+									<h2>bindActionCreators</h2>  
+									<p>This function allows us to link the dispatch function of the store with the action creators (these are functions that return the action object) so that we do not have to be importing the store in all the parts that we need to issue an action.</p>  
+									<p>It is widely used with React and above all with the react-redux library that allows us to write less code if we use Redux with React</p>
+									<h2>compose</h2>
+									<p>It is widely used with React and above with the react-redux library that allows us to write less code if we use Redux with React</p>   
+														    
+								</section>
+
+						</div>
+					</div>
+
+				<!-- Sidebar -->
+					<div id="sidebar">
+						<div class="inner">
+
+							<!-- Search -->
+								<section id="search" class="alt">
+									<form method="post" action="#">
+										<input type="text" name="query" id="query" placeholder="Search" />
+									</form>
+								</section>
+
+							<!-- Menu -->
+								<nav id="menu">
+									<header class="major">
+										<h2>Menu</h2>
+									</header>
+									<ul>
+										<li><a href="index.html">Homepage</a></li>
+										<li><a href="generic.html">Yassine Hajji</a></li>
+										<li><a href="elements.html">Medlak</a></li>
+									</ul>
+								</nav>
+
+							<!-- Footer -->
+								<footer id="footer">
+									<p class="copyright" href="https://yassineh.com">&copy; Yassine Hajji</p>
+								</footer>
+
+						</div>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

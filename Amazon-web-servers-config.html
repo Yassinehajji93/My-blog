@@ -1,0 +1,115 @@
+<!DOCTYPE HTML>
+<html lang="en">
+	<head>
+		<title>Amazon Web Services</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+	</head>
+	<body>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Header -->
+								<header id="header">
+									<a href="index.html" class="logo"><strong>Blog</strong></a>
+									<ul class="icons">
+										<li><a href="https://www.linkedin.com/in/yassine-hajji-473498139/" class="icon fa-linkedin"><span class="label">Linkedin</span></a></li>
+										<li><a href="https://github.com/yassinehajji" class="icon fa-github"><span class="label">Github</span></a></li>
+									</ul>
+								</header>
+
+							<!-- Content -->
+								<section>
+									<header class="main">
+										<h1>How to set up a web server with Amazon Web Services</h1>
+									</header>
+									    <span class="image main"><img src="images/AWS/aws-ban.png" alt="" /></span>
+                 
+								    <p>Sometimes we need a web server for testing and it does not work with our local development environment because we need to show someone what we are doing and therefore it needs to be uploaded somewhere.</p>
+								    <P>The old way of doing this was to have a web hosting and upload the files by FTP to the host and with the URL of the domain that we had bought we already had an environment that we could teach. This, nowadays, is considered a bit "shabby", being able to make use of the Cloud technologies that we have. Next I tell how to register in Amazon Web Services and mount a LAMP server in one instance.</P>
+								    <P>The most recommended to "trastear" is to open an account in Amazon Web Services (AWS) and launch an Elastic Compute Cloud (EC2) that basically consists of a Linux virtual machine with which we can do what we want, and most importantly , Amazon gives you 1 year free to use, after the year will charge you for hours of use and storage, but the instance you can stop and finish it when you want. In case you want to leave it always running, you can get to pay about € 16 a month.</P>
+								        <span class="image main"><img src="images/AWS/aws-ban.png" alt="" /></span>
+
+								    <P>The first step, as I say, is to make an Amazon Web Services account, if you have an account in the Amazon store, it will work for you. For this we go to aws.amazon.com and click on Get Started for free - Launch virtual machines and apps in minutes.</P> 
+								    <P>You will ask for our information to register, as well as a credit / debit card in case we use a non-free service or by the end of our trial period. During the first year of use, if we do not have more than one instance EC2 t1.micro, Amazon will not charge us anything.</P>
+								    <P>To verify that the account is yours we will have to verify our identity by phone, but there is nothing to fear, we will simply call a recording to which we must say the key that the web provides, we can even give you the numbers by pressing the telephone keypad.</P>  
+								        <span class="image main"><img src="images/AWS/aws-acc.png" alt="" /></span>
+								        <span class="image main"><img src="images/AWS/aws-ser-conf.png" alt="" /></span>
+								        <span class="image main"><img src="images/AWS/aws-pin.png" alt="" /></span>
+								    <p>Once the account is verified, you will receive an email that the activation is complete and you will be able to access the AWS dashboard.</p>
+								        <span class="image main"><img src="images/AWS/aws-dash.png" alt="" /></span>
+								    <p>There we go to EC2 and in the control panel we give to launch new instance. We launched the Quick Launch Wizard, we chose to create a New Key Pair and as a virtual machine we will choose Ubuntu Server 12.04.2 LTS that is free for the t1.micro. We download the .pem file with the private key that we have generated in order to access the virtual machine and we give a following.</p> 
+								        <span class="image main"><img src="images/AWS/aws-pan-conf.png" alt="" /></span>  
+								    <p>Once we have done the previous steps we will have our instance running as we see in the dashboard.</p> 
+								        <span class="image main"><img src="images/AWS/ser-aws.png" alt="" /></span> 
+								    <p>Now to access via terminal to our virtual machine we have the private key .pem that we have downloaded and a URL of type ec2-50-19-140-229.compute-1.amazonaws.com that points to the IP of our instance. To be able to access via SSH in a more comfortable way we will do the following.</p>        
+								        <span class="image main"><img src="images/AWS/mkdir-ser.png" alt="" /></span> 
+								    <p>This way, whenever we want to access our machine via SSH, we only have to write in the terminal.</p>    <span class="image main"><img src="images/AWS/ssh-awh.png" alt="" /></span>
+								    <p>We are already inside the Linux instance of AWS, to have it updated it is a good option to do the following.</p>
+								        <span class="image main"><img src="images/AWS/sudo-apt.png" alt="" /></span>
+								    <p>And to be able to install a LAMP environment, we execute the following:</p>   
+								        <span class="image main"><img src="images/AWS/sudo-apt-ins.png" alt="" /></span>
+								    <p>This will open a menu of options where we can choose to install a LAMP (Linux-Apache-MySQL-PHP) server in a few minutes.</p>
+								        <span class="image main"><img src="images/AWS/aws-ss.png" alt="" /></span>
+								    <h2>Once the installation is finished, your static web server will be located in the / var / www / directory.</h2>  
+								    <p>And if we go to our browser and put as URL the one provided by the AWS instance, type ec2-50-19-140-229.compute-1.amazonaws.com we can see the following message:</p> 
+								        <span class="image main"><img src="images/AWS/aws-ser-work.png" alt="" /></span>
+								    <p>That means we have created a Linux virtual machine in an EC2 instance of AWS, we have installed a LAMP server and we can already serve static files and PHP based web applications in it.</p>    
+								    <p>And to be even cooler, forget about FTPs that is from the time when the websites were full of GIFs, little lights and Flash. Install Git on your machine and pull from your repository on GitHub, Bitbucket or wherever you have it. If you do that, God will kill fewer kittens.</p>
+									     
+								</section>
+
+						</div>
+					</div>
+
+				<!-- Sidebar -->
+					<div id="sidebar">
+						<div class="inner">
+
+							<!-- Search -->
+								<section id="search" class="alt">
+									<form method="post" action="#">
+										<input type="text" name="query" id="query" placeholder="Search" />
+									</form>
+								</section>
+
+							<!-- Menu -->
+								<nav id="menu">
+									<header class="major">
+										<h2>Menu</h2>
+									</header>
+									<ul>
+										<li><a href="index.html">Homepage</a></li>
+										<li><a href="Yassineh.com">Yassine Hajji</a></li>
+										<li><a href="medlak.com">Medlak</a></li>
+									</ul>
+								</nav>
+
+							<!-- Footer -->
+								<footer id="footer">
+									<p class="copyright" href="https://yassineh.com">&copy; Yassine Hajji</p>
+								</footer>
+
+						</div>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

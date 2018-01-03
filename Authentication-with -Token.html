@@ -1,0 +1,119 @@
+<!DOCTYPE HTML>
+<html lang="en">
+	<head>
+		<title>Authentication with Token</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+	</head>
+	<body>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Header -->
+								<header id="header">
+									<a href="index.html" class="logo"><strong>Blog</strong></a>
+									<ul class="icons">
+										<li><a href="https://www.linkedin.com/in/yassine-hajji-473498139/" class="icon fa-linkedin"><span class="label">Linkedin</span></a></li>
+										<li><a href="https://github.com/yassinehajji" class="icon fa-github"><span class="label">Github</span></a></li>
+									</ul>
+								</header>
+
+							<!-- Content -->
+								<section>
+									<header class="main">
+										<h1>What is Token-based authentication?</h1>
+									</header>
+									                     
+								    <p>There are several authentication systems in a web application. Next we will see the 2 most used versions together with their advantages and disadvantages.</p>
+								     
+								    <h2>Authentication on the server, storing the session</h2>
+								    <p>The most common one so far was the one that saved user information in a session. For this we needed to store that information in a database, it could be a collection of MongoDB or Redis.</p>
+								    <p>However, this meant a loss of scalability in our application, since the server must store a record for each time the user authenticates in the system. We also make the Backend take care of it and in this way if we want to develop a mobile application, we would need another different backend, not being able to reuse it.</p>
+								    <h2>Stateless Authentication with Tokens</h2>
+								    <p>Therefore, one of the new trends in modern web development is authentication through Tokens and our backend is a RESTful API without status information, stateless.</p>
+								    <p>The operation is as follows. The user authenticates in our application, either with a user / password pair, or through a provider such as Twitter, Facebook or Google for example. Thereafter, each HTTP request made by the user is accompanied by a Token in the header. This Token is nothing more than an encrypted signature that allows our API to identify the user. But this Token is not stored on the server, but on the client side (for example in localStorage or sessionStorage) and the API is responsible for deciphering that Token and redirecting the flow of the application in one way or another.</p>
+								    <p>As the tokens are stored on the client side, there is no status information and the application becomes fully scalable. We can use the same API for different applications (Web, Mobile, Android, iOS, ...) we just have to worry about sending the data in JSON format and generate and decrypt tokens in the authentication and subsequent HTTP requests through a middleware.</p>
+								        <span class="image main"><img src="images/token-auth/ap-cl-ser-tk.png" alt="" /></span>
+								    <p>It also adds more security. By not using cookies to store user information, we can avoid CSRF (Cross-Site Request Forgery) attacks that manipulate the session that is sent to the backend. Of course we can make the token expire after a while which adds an extra layer of security.</p> 
+								    
+								    <h2>Authentication with JSON Web Tokens</h2>  
+								    <p>The standard for this type of authentication is to use JSON Web Tokens (JWT). Like the APIs, the JSON format is language agnostic, and we can use the one we want (Node.js, Python, Ruby, PHP, .NET, Java, ...)</p> 
+								    <p>The format of a JWT is composed of 3 strings separated by a point.</p>
+								    <p>ach string means one thing:</p>
+								    <h2>Header</h2>
+								    <p>The first part is the header of the token, which in turn has two other parts, the type, in this case a JWT and the encoding used. Commonly it is the HMAC algorithm SHA256, the content without coding is the following one:</p>
+								        <span class="image main"><img src="images/token-auth/typ-jwt.png" alt="" /></span>
+								    <p>Encoded would be: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9</p>
+
+								    <h2>Payload</h2>
+								    <p>The Payload is made up of the so-called JWT Claims where the attributes that define our token will be placed. There are several that you can consult here, the most common to use are:</p>
+								    <p>sub: Identifies the subject of the token, for example a user identifier.</p>
+								    <p>iat: Identifies the date of creation of the token, valid if we want to set an expiration date. In UNIX time format.</p>
+								    <p>exp: Identifies the expiration date of the token. We can calculate it from the iat. Also in UNIX time format.</p>
+								        <span class="image main"><img src="images/token-auth/sub-exp-iat.png" alt="" /></span>
+								    <p>We can also add more fields, even personalized, such as the user's role, etc.</p>
+								        <span class="image main"><img src="images/token-auth/iat-ex-adm.png" alt="" /></span>
+								    <p>Encoded would be: eyJzdWIiOiI1NGE4Y2U2MThlOTFiMGIxMzY2NWUyZjkiLCJpYXQiOiIxNDI0MTgwNDg0IiwiZXhwIjoiMTQyNTM5MDE0MiJ9</p>
+								    
+								    <h2>Signature</h2> 
+								    <p>The signature is the third and final part of the JSON Web Token. It is formed by the previous components (Header and Payload) encrypted in Base64 with a secret key (stored in our backend). This serves as Hash to verify that everything is fine.</p>  
+								        <span class="image main"><img src="images/token-auth/bas-hma.png" alt="" /></span>
+								    <p>Encoded would be: yk4nouUteW54F1HbWtgg1wJxeDjqDA_8AhUPyjE5K0U</p>   
+								    <p>That if we check it on the web JWT.io we see that it translates it to the fields that we have seen.</p> 
+   								        	     
+								</section>
+
+						</div>
+					</div>
+
+				<!-- Sidebar -->
+					<div id="sidebar">
+						<div class="inner">
+
+							<!-- Search -->
+								<section id="search" class="alt">
+									<form method="post" action="#">
+										<input type="text" name="query" id="query" placeholder="Search" />
+									</form>
+								</section>
+
+							<!-- Menu -->
+								<nav id="menu">
+									<header class="major">
+										<h2>Menu</h2>
+									</header>
+									<ul>
+										<li><a href="index.html">Homepage</a></li>
+										<li><a href="Yassineh.com">Yassine Hajji</a></li>
+										<li><a href="medlak.com">Medlak</a></li>
+									</ul>
+								</nav>
+
+							<!-- Footer -->
+								<footer id="footer">
+									<p class="copyright" href="https://yassineh.com">&copy; Yassine Hajji</p>
+								</footer>
+
+						</div>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE HTML>
+<html lang="en">
+	<head>
+		<title>Ways to create a Component in React</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+	</head>
+	<body>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Header -->
+								<header id="header">
+									<a href="index.html" class="logo"><strong>Blog</strong></a>
+									<ul class="icons">
+										<li><a href="#" class="icon fa-linkedin"><span class="label">Linkedin</span></a></li>
+										<li><a href="#" class="icon fa-github"><span class="label">Github</span></a></li>
+									</ul>
+								</header>
+
+							<!-- Content -->
+								<section>
+									<header class="main">
+										<h1>Ways to create a Component in React</h1>
+									</header>
+
+								        <span class="image main"><img src="images/cr-com-rea/ban-rea-com.png" alt="" /></span>
+
+									<p>A component in React can be created in different ways depending on the version of JavaScript we are using and the purpose of the component.</p>
+								    
+								    <hr class="major" />
+									<h2>React component with ES5</h2>
+									<p>This is the first form that there was and that you can find in many tutorials on the net. It is based on the createClass method of the React library and the structure would be the following:</p>
+									<p>Imagine you have this function:</p>
+									    <span class="image main"><img src="images/cr-com-rea/mc-rea-prop.png" alt="" /></span>
+									<p>The createClass method is passed an object that contains the typical functions of the life cycle if they are to be used, the render method, the propTypes, the initial state would be configured in the getInitialState function and the default props are defined in getDefaultProps.</p>    
+
+									<hr class="major" />
+									<h2>React with ES6 (or ES2015)</h2>
+									<p>With the new JavaScript standard we can use classes and in this case, we can "inherit" the React.Component object. The creation of a component using this syntax would be as follows:</p>
+									    <span class="image main"><img src="images/cr-com-rea/com-prop-myc.png" alt="" /></span>
+
+									<p>When using the syntax of classes, we have a constructor method where we configure the initial state and the properties are received. The render method is one more function within the class and in this case the propTypes are defined outside the class as a property just like the defaultProps</p>
+									<h2>React component as a function</h2>
+									<p>Another way to create a component in React, with the new standard is to create it as a function. This form is used when the component is purely representational or stateless.</p>
+									<p>When is it better to create a component in this way? If in your component you only use the render method, and you are not using the state, it is better to define it as a function. In this way your final application will have better performance.</p>
+									    <span class="image main"><img src="images/cr-com-rea/con-mi-ret.png" alt="" /></span>
+
+									<p>You can even apply the latest features of ES2015 as object destructuring for properties and arrow functions to define the function. It would be something like this:</p> 
+									    <span class="image main"><img src="images/cr-com-rea/con-mico-pr.png" alt="" /></span>
+
+									<h2>Using ES7</h2> 
+									<p>Although version 7 of ECMAScript is not yet approved or implemented by browsers, we can use it in our code using Babel and the preset stage-0 for it.</p>   
+									<p>What is the difference with respect to ES6? ES7 introduces the Property Initialiazers that we can apply to the defaultProps and the propTypes so that they are included within the definition of the class.</p>
+									<p>And it can also be applied to the initial state, defining it outside the constructor method. This would be the syntax:</p>
+
+									    <span class="image main"><img src="images/cr-com-rea/cl-mic-ext.png" alt="" /></span>
+									<p>As you can see, there are several ways to create a React component, all are valid, it only depends on the use case and the ECMAScript specification that you want to use.</p>   
+									<p>The most common today is to use the class version of ES2015 or the version as a function in the case of stateless components. Although if you use babel stage-0 nothing prevents you from using the Property Initialiazers and prepare your components for ES7.</p> 
+ 
+																	    
+								</section>
+
+						</div>
+					</div>
+
+				<!-- Sidebar -->
+					<div id="sidebar">
+						<div class="inner">
+
+							<!-- Search -->
+								<section id="search" class="alt">
+									<form method="post" action="#">
+										<input type="text" name="query" id="query" placeholder="Search" />
+									</form>
+								</section>
+
+							<!-- Menu -->
+								<nav id="menu">
+									<header class="major">
+										<h2>Menu</h2>
+									</header>
+									<ul>
+										<li><a href="index.html">Homepage</a></li>
+										<li><a href="generic.html">Yassine Hajji</a></li>
+										<li><a href="elements.html">Medlak</a></li>
+									</ul>
+								</nav>
+
+							<!-- Footer -->
+								<footer id="footer">
+									<p class="copyright" href="https://yassineh.com">&copy; Yassine Hajji</p>
+								</footer>
+
+						</div>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
